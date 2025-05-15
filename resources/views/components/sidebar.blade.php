@@ -34,7 +34,7 @@
                 
                 <!-- Salary -->
                 <li>
-                    <a href="{{ route('salary') }}" class="flex items-center px-4 py-2 hover:bg-base-300 {{ request()->routeIs('payroll*') ? 'bg-base-300 text-primary font-medium' : '' }}">
+                    <a href="{{ route('salary') }}" class="flex items-center px-4 py-2 hover:bg-base-300 {{ request()->routeIs('salary*') ? 'bg-base-300 text-primary font-medium' : '' }}">
                         <i class="fa-solid fa-money-bill-wave w-6 h-6"></i>
                         <span class="ml-3" x-show="sidebarOpen">Salary</span>
                     </a>

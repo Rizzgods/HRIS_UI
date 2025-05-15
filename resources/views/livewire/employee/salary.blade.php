@@ -92,13 +92,16 @@
                                 option-value="value" />
                         </div>
                 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Modified: Tax settings in a single row with improved UI -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <x-input label="Tax Code" wire:model.defer="tax_code" />
+                            <div class="flex flex-col justify-end h-full">
+                                <label class="block text-sm font-medium mb-1">Tax Ceiling Options</label>
+                                <div class="bg-base-100 p-2 rounded-md border border-base-300">
+                                    <x-checkbox wire:model.defer="with_tax_ceiling" label="With Tax Ceiling" />
+                                </div>
+                            </div>
                             <x-input label="Tax Ceiling (0-1)" wire:model.defer="tax_ceiling" />
-                        </div>
-                
-                        <div class="p-3 bg-base-100 rounded-lg">
-                            <x-checkbox wire:model.defer="with_tax_ceiling" label="With Tax Ceiling" />
                         </div>
                     </div>
                 </div>
@@ -138,10 +141,10 @@
                 </div>
             </div>
 
-            <!-- Union & OT, Benefits and Health -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Union & OT, Benefits, Health, and Banking Information in one row -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <!-- Union and OT -->
-                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm">
+                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm h-full">
                     <h2 class="flex items-center text-lg font-semibold text-gray-700 mb-4">
                         <i class="fa-solid fa-users text-primary mr-2"></i>
                         Union & OT
@@ -153,7 +156,7 @@
                 </div>
 
                 <!-- Benefits -->
-                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm">
+                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm h-full">
                     <h2 class="flex items-center text-lg font-semibold text-gray-700 mb-4">
                         <i class="fa-solid fa-gift text-primary mr-2"></i>
                         Benefits
@@ -166,7 +169,7 @@
                 </div>
 
                 <!-- Health -->
-                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm">
+                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm h-full">
                     <h2 class="flex items-center text-lg font-semibold text-gray-700 mb-4">
                         <i class="fa-solid fa-heart-pulse text-primary mr-2"></i>
                         Health
@@ -176,21 +179,20 @@
                         <x-input label="Addtl Pagibig" wire:model.defer="addtl_pagibig" />
                     </div>
                 </div>
-            </div>
 
-            <!-- Banking Information -->
-            <div class="p-6 bg-base-200/30 rounded-xl shadow-sm">
-                <h2 class="flex items-center text-lg font-semibold text-gray-700 mb-4">
-                    <i class="fa-solid fa-building-columns text-primary mr-2"></i>
-                    Banking Information
-                </h2>
-                <div class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-3 bg-base-100 rounded-lg">
-                            <h3 class="font-medium mb-2">Payment Type</h3>
-                            <div class="flex space-x-4">
-                                <x-radio id="atm" value="ATM" label="ATM" wire:model.defer="payment_type" />
-                                <x-radio id="cash" value="CASH" label="Cash" wire:model.defer="payment_type" />
+                <!-- Banking Information -->
+                <div class="p-6 bg-base-200/30 rounded-xl shadow-sm h-full">
+                    <h2 class="flex items-center text-lg font-semibold text-gray-700 mb-4">
+                        <i class="fa-solid fa-building-columns text-primary mr-2"></i>
+                        Banking Information
+                    </h2>
+                    <div class="space-y-4">
+                        <!-- Payment Type as Checkboxes -->
+                        <div class="flex flex-col">
+                            <label class="block text-sm font-medium mb-1">Payment Type</label>
+                            <div class="bg-base-100 p-2 rounded-md border border-base-300 flex space-x-4">
+                                <x-checkbox wire:model.defer="payment_type_atm" label="ATM" />
+                                <x-checkbox wire:model.defer="payment_type_cash" label="Cash" />
                             </div>
                         </div>
                         
