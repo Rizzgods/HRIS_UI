@@ -19,14 +19,19 @@
     @livewireStyles
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
-    <div x-data="{ sidebarOpen: true }">
+    <div x-data="{ sidebarOpen: window.innerWidth >= 1024 }" @resize.window="sidebarOpen = window.innerWidth >= 1024">
         <!-- Sidebar -->
         <x-sidebar />
 
         <!-- Page Content -->
-        <div class="transition-all duration-300" :class="{ 'ml-64': sidebarOpen, 'ml-16': !sidebarOpen }">
-            <!-- Main Content -->
-            <main class="p-4 md:p-6 min-h-screen bg-white shadow-sm rounded-lg mx-2 my-2">
+        <div class="transition-all duration-300" 
+            :class="{
+                'lg:ml-64': sidebarOpen,
+                'lg:ml-16': !sidebarOpen,
+                'ml-0': true
+            }">
+            <!-- Main Content - Add top padding for mobile navbar -->
+            <main class="pt-16 lg:pt-2 p-2 sm:p-4 md:p-6 min-h-screen bg-white shadow-sm rounded-lg mx-2 my-2">
                 {{ $slot }}
             </main>
         </div>
